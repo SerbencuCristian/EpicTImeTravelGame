@@ -12,6 +12,8 @@ public class SelfBox : MonoBehaviour
     void Start()
     {
         originalPosition = transform.position;
+        player = GameObject.Find("Player");
+        animator = player.GetComponent<Animator>();
     }
 
     // Update is called once per frame

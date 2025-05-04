@@ -448,10 +448,9 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.42f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.42f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.42f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
-"Assets/DeathPit.cs"
-"Assets/PauseMenu.cs"
 "Assets/Scripts/Boxes.cs"
 "Assets/Scripts/checkpoint.cs"
+"Assets/Scripts/DeathPit.cs"
 "Assets/Scripts/Enemies.cs"
 "Assets/Scripts/EnergyBarUI.cs"
 "Assets/Scripts/FadeUI.cs"
@@ -459,12 +458,14 @@
 "Assets/Scripts/HealthUI.cs"
 "Assets/Scripts/Laser.cs"
 "Assets/Scripts/LoadScript.cs"
+"Assets/Scripts/PauseMenu.cs"
 "Assets/Scripts/PlayerHealth.cs"
 "Assets/Scripts/playerMovement.cs"
 "Assets/Scripts/PlayerShoot.cs"
 "Assets/Scripts/SelfBox.cs"
-"Assets/SettingsScript.cs"
-"Assets/StartCanvas.cs"
+"Assets/Scripts/SettingsScript.cs"
+"Assets/Scripts/StartCanvas.cs"
+"Assets/_SceneManager.cs"
 -langversion:9.0
 /deterministic
 /optimize+

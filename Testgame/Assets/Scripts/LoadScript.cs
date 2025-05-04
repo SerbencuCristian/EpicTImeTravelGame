@@ -20,7 +20,7 @@ public class LoadScript : MonoBehaviour
     public GameObject Holder;
     private float timer = 0;
     public bool isHolding = false;
-    public static event Action OnHoldComplete;
+    public event Action OnHoldComplete;
     public float cooldown = 0;
     public bool ok = true;
     private bool isAnimating = false;
@@ -30,18 +30,39 @@ public class LoadScript : MonoBehaviour
     public LayerMask disabledLayer;
     public int lastpress = 2;
     public bool checkok = false;
-    public List<GameObject> grounds;
-    public List<GameObject> Pastboxes; //added by hand, again findallbytag could work, but i am scared to use it
-    public List<GameObject> Futureboxes;
-    public List<GameObject> Presentboxes;
+    public GameObject[] grounds;
+    public GameObject[] Pastboxes; //added by hand, again findallbytag could work, but i am scared to use it
+    public GameObject[] Futureboxes;
+    public GameObject[] Presentboxes;
 
     public int timeindicator = 2;
 
     public bool reseter = false;
     public bool HoldingTS = false;
-
     void Start()
     {
+        camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        animatorTimeSight = GameObject.Find("TimeSightOverlay").GetComponent<Animator>();
+        animatorFade = GameObject.Find("FadeMask").GetComponent<Animator>();
+        PastImage = GameObject.Find("PastImage").GetComponent<Image>();
+        PresentImage = GameObject.Find("PresentImage").GetComponent<Image>();
+        FutureImage = GameObject.Find("FutureImage").GetComponent<Image>();
+        cooldownSlider = GameObject.Find("CooldownSlider").GetComponent<Slider>();
+        FillCircle = GameObject.Find("LoadCircle").GetComponent<Image>();
+        Player = GameObject.Find("Player");
+        Holder = GameObject.Find("Holder");
+        disabledCheck = GameObject.Find("DisabledCheck").transform;
+
+        grounds[0] = GameObject.FindWithTag("Ground Past");
+        grounds[1] = GameObject.FindWithTag("Platform Past");
+        grounds[2] = GameObject.FindWithTag("Ground Present");
+        grounds[3] = GameObject.FindWithTag("Platform Present");
+        grounds[4] = GameObject.FindWithTag("Ground Future");
+        grounds[5] = GameObject.FindWithTag("Platform Future");
+
+        Pastboxes = GameObject.FindGameObjectsWithTag("PastBox");
+        Presentboxes = GameObject.FindGameObjectsWithTag("PresentBox");
+        Futureboxes = GameObject.FindGameObjectsWithTag("FutureBox");
         cooldownSlider.value = 0;
         cooldownSlider.maxValue = 5f;
         cooldownSlider.minValue = 0;
@@ -191,6 +212,29 @@ public class LoadScript : MonoBehaviour
         }
         if (lastpress != timeindicator) //cant check same time as is in
         {
+            if(timeindicator == 1)
+            {
+                foreach(GameObject box in Pastboxes)
+                {
+                    box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                }
+            }
+            else if(timeindicator == 2)
+            {
+                foreach(GameObject box in Presentboxes)
+                {
+                    box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                }
+            }
+            else if(timeindicator == 3)
+            {
+                foreach(GameObject box in Futureboxes)
+                {
+                    box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                }
+            }
+
+
         if(lastpress == 1) //enable past colliders
         {
             grounds[0].layer = LayerMask.NameToLayer("disabled");
@@ -271,6 +315,27 @@ public class LoadScript : MonoBehaviour
                 }
                 
             }
+            if(timeindicator == 1)
+            {
+                foreach(GameObject box in Pastboxes)
+                {
+                    box.GetComponent<Rigidbody2D>().constraints =RigidbodyConstraints2D.FreezeRotation;
+                }
+            }
+            else if(timeindicator == 2)
+            {
+                foreach(GameObject box in Presentboxes)
+                {
+                    box.GetComponent<Rigidbody2D>().constraints =RigidbodyConstraints2D.FreezeRotation;
+                }
+            }
+            else if(timeindicator == 3)
+            {
+                foreach(GameObject box in Futureboxes)
+                {
+                    box.GetComponent<Rigidbody2D>().constraints =RigidbodyConstraints2D.FreezeRotation;
+                }
+            }
             return false;
         }
         if(lastpress == 1) //disable checked times
@@ -308,6 +373,27 @@ public class LoadScript : MonoBehaviour
                     box.GetComponent<BoxCollider2D>().enabled = false;
                 }
                 
+            }
+            if(timeindicator == 1)
+            {
+                foreach(GameObject box in Pastboxes)
+                {
+                    box.GetComponent<Rigidbody2D>().constraints =RigidbodyConstraints2D.FreezeRotation;
+                }
+            }
+            else if(timeindicator == 2)
+            {
+                foreach(GameObject box in Presentboxes)
+                {
+                    box.GetComponent<Rigidbody2D>().constraints =RigidbodyConstraints2D.FreezeRotation;
+                }
+            }
+            else if(timeindicator == 3)
+            {
+                foreach(GameObject box in Futureboxes)
+                {
+                    box.GetComponent<Rigidbody2D>().constraints =RigidbodyConstraints2D.FreezeRotation;
+                }
             }
         return true;
         }

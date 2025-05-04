@@ -6,29 +6,41 @@ using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 public class GameController : MonoBehaviour
 {
-    public GameObject Pausemenu;
-    public Boxes[] boxes;//same like with enemies
+    private Boxes[] boxes;//same like with enemies
     public bool reseter = false;
     public GameObject player;
     public GameObject LoadCanvas;
-    public List<GameObject> grounds;
-
-    public List<GameObject> enemies; //added by hand, could be done with findallbytag but it could be expensive performance-wise, i avoided
+    public GameObject[] grounds;
+    private Enemies[] enemies; //added by hand, could be done with findallbytag but it could be expensive performance-wise, i avoided
     private int timeindicator = 2;
-    private int nextTime = 2;
-    public GameObject healthUI;
+    public HealthUI healthUI;
     private PlayerHealth playerHealth;
     public Vector2 lastCheckpoint;
+    public GameObject _Scenemanager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Awake()
+    {
+        _Scenemanager = GameObject.Find("SceneManager");
+        healthUI = FindObjectsOfType<HealthUI>()[0];
+        player = GameObject.FindWithTag("Player");
+        LoadCanvas = GameObject.Find("LoadCanvas");
+        boxes = FindObjectsOfType<Boxes>();
+        enemies = FindObjectsOfType<Enemies>();
+        grounds[0] = GameObject.FindWithTag("Ground Past");
+        grounds[1] = GameObject.FindWithTag("Platform Past");
+        grounds[2] = GameObject.FindWithTag("Ground Present");
+        grounds[3] = GameObject.FindWithTag("Platform Present");
+        grounds[4] = GameObject.FindWithTag("Ground Future");
+        grounds[5] = GameObject.FindWithTag("Platform Future");
+    }
     void Start()
     {
+        
         lastCheckpoint = player.transform.position;
         playerHealth = player.GetComponent<PlayerHealth>();
         //invokes of actions
-        LoadScript.OnHoldComplete += ChangeTime;
+        LoadCanvas.GetComponent<LoadScript>().OnHoldComplete += ChangeTime;
         PlayerHealth.Death += ChangeTime;
-        DeathPit.Death += ChangeTime;
-        LoadCanvas.SetActive(true);
         //basically set ground to present, we start in the present
         grounds[4].layer = LayerMask.NameToLayer("disabled");
         grounds[4].GetComponent<TilemapRenderer>().enabled = false;
@@ -52,13 +64,16 @@ public class GameController : MonoBehaviour
         grounds[3].GetComponent<TilemapCollider2D>().usedByComposite = true;
         
     }
+    void Update()
+    {
+        _Scenemanager.GetComponent<_SceneManager>().lastcheckpoint = lastCheckpoint;
+    }
     void ChangeTime()
     {
         if (reseter == false)
         {
             timeindicator = LoadCanvas.GetComponent<LoadScript>().lastpress;
             playerHealth.currentEnergy = playerHealth.currentEnergy - 10;
-            LoadCanvas.SetActive(false);
             switch (timeindicator)
             {
                 case 1: //change to past, order probably doesnt mater
@@ -157,7 +172,6 @@ public class GameController : MonoBehaviour
                 box.TimeChange();
                 box.FreezeBoxes();
             }
-            LoadCanvas.SetActive(true);
         }
         else //reseting / death, made them the same, might regret later
         {
@@ -165,7 +179,7 @@ public class GameController : MonoBehaviour
             {
                 box.GetComponent<Boxes>().ResetBoxes();
             }
-            foreach (GameObject enemy in enemies) //reseting enemies
+            foreach (Enemies enemy in enemies) //reseting enemies
             {
                 enemy.GetComponent<Enemies>().MoveToOriginalPosition();
             }

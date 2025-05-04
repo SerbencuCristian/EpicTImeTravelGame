@@ -67,21 +67,22 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\FadeUI.cs" />
-    <Compile Include="Assets\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\LoadScript.cs" />
-    <Compile Include="Assets\StartCanvas.cs" />
+    <Compile Include="Assets\Scripts\StartCanvas.cs" />
     <Compile Include="Assets\Scripts\HealthUI.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\playerMovement.cs" />
-    <Compile Include="Assets\DeathPit.cs" />
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
+    <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\EnergyBarUI.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />
-    <Compile Include="Assets\SettingsScript.cs" />
+    <Compile Include="Assets\Scripts\SettingsScript.cs" />
     <Compile Include="Assets\Scripts\Enemies.cs" />
     <Compile Include="Assets\Scripts\SelfBox.cs" />
+    <Compile Include="Assets\_SceneManager.cs" />
     <Compile Include="Assets\Scripts\checkpoint.cs" />
     <Compile Include="Assets\Scripts\Boxes.cs" />
+    <Compile Include="Assets\Scripts\DeathPit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

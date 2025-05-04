@@ -7,7 +7,6 @@ using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 public class DeathPit : MonoBehaviour
 {
-    public static event Action Death;
     void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerHealth player = collision.GetComponent<PlayerHealth>();

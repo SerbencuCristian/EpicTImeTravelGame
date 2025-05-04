@@ -10,6 +10,12 @@ TagManager:
   - FutureBox
   - Enemy
   - Ground
+  - Ground Past
+  - Ground Present
+  - Ground Future
+  - Platform Past
+  - Platform Present
+  - Platform Future
   layers:
   - Default
   - TransparentFX

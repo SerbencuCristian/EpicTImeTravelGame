@@ -12,6 +12,10 @@ public class checkpoint : MonoBehaviour
     public bool collision = false;
     public GameObject GameController;
     public GameObject LoadCanvas;
+    void Awake()
+    {
+        LoadCanvas = GameObject.Find("LoadCanvas");
+    }
     // Update is called once per frame
     void Update()
     {
