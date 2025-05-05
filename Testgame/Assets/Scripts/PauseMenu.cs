@@ -7,6 +7,15 @@ public class PauseMenu : MonoBehaviour
     public GameObject Pausemenu;
     public GameObject player;
     public GameObject settingsImage;
+
+    void Start()
+    {
+        Pausemenu = GameObject.Find("PauseMenu");
+        player = GameObject.Find("Player");
+        settingsImage = GameObject.Find("SettingsImage"); 
+        settingsImage.SetActive(false);
+        Pausemenu.SetActive(false);  
+    }
     public void ResumeButton()
     {
         Time.timeScale = 1;
@@ -26,9 +35,15 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale=1;
         SceneManager.LoadScene("StartMenu");
+        GameObject.Find("SaveData").GetComponent<SaveData>().data.timeindicator = GameObject.Find("GameController").GetComponent<GameController>().timeindicator;
+        GameObject.Find("SaveData").GetComponent<SaveData>().data.lastCheckpoint = GameObject.Find("GameController").GetComponent<GameController>().lastCheckpoint;
+        GameObject.Find("SaveData").GetComponent<SaveData>().SaveToJson();
     }
     public void ExitButton()
     {
+        GameObject.Find("SaveData").GetComponent<SaveData>().data.timeindicator = GameObject.Find("GameController").GetComponent<GameController>().timeindicator;
+        GameObject.Find("SaveData").GetComponent<SaveData>().data.lastCheckpoint = GameObject.Find("GameController").GetComponent<GameController>().lastCheckpoint;
+        GameObject.Find("SaveData").GetComponent<SaveData>().SaveToJson();
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #endif //for editor
@@ -41,7 +56,7 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale=0;
             Pausemenu.SetActive(true);
         }
-        else if(context.performed)
+        else if(context.performed && !settingsImage.activeSelf)
         {
             ResumeButton();
         }

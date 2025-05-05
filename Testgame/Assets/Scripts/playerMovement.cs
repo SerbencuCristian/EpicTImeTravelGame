@@ -1,4 +1,9 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 public class playerMovement : MonoBehaviour
 {
@@ -25,25 +30,25 @@ public class playerMovement : MonoBehaviour
 
     public float cooldown = 0;
     public bool ok = false;
-    public float currentEnergy;
-    void Start()
-    {
-    
-    }
-
+    // public float currentEnergy;
+    private bool isKnockedBack = false;
+    private float knockbackDuration = 0.2f; // Duration of the knockback effect
     // Update is called once per frame
     void Update()
     {
-        currentEnergy = GetComponent<PlayerHealth>().currentEnergy;
-        if(currentEnergy <= 0) //no energy = no jumping
+        // currentEnergy = GetComponent<PlayerHealth>().currentEnergy;
+        // if(currentEnergy <= 0) //no energy = no jumping
+        // {
+        //     maxJumps = 0;
+        // }
+        // else
+        // {
+        //     maxJumps = 2;
+        // }
+        if (!isKnockedBack && Time.timeScale == 1)
         {
-            maxJumps = 0;
-        }
-        else
-        {
-            maxJumps = 2;
-        }
         rb.linearVelocity = new Vector2(horizontalMovement * movespeed, rb.linearVelocity.y);
+        }
         GroundCheck();
         Gravity();
         Flip();
@@ -68,14 +73,14 @@ public class playerMovement : MonoBehaviour
     }
     public void Jump(InputAction.CallbackContext context)
     {
-        if (jumpCount < maxJumps && currentEnergy >= 5 && LoadCanvas.GetComponent<LoadScript>().HoldingTS == false && Time.timeScale == 1)
+        if (jumpCount < maxJumps && /* currentEnergy >= 5 && */ LoadCanvas.GetComponent<LoadScript>().HoldingTS == false && Time.timeScale == 1)
         {
             if (context.performed)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 jumpCount++;
                 animator.SetTrigger("jump");
-                GetComponent<PlayerHealth>().currentEnergy -= 5; //energy cost of jump
+                //GetComponent<PlayerHealth>().currentEnergy -= 5; //energy cost of jump
                 dust.Play(); //create dust particle effect
 
             }
@@ -98,7 +103,7 @@ public class playerMovement : MonoBehaviour
     }
     private void Flip() //flip sprite when turning around
     {
-        if(isFacingRight && horizontalMovement < 0 || !isFacingRight && horizontalMovement > 0 && Time.timeScale == 1)
+        if((isFacingRight && horizontalMovement < 0) || (!isFacingRight && horizontalMovement > 0) && Time.timeScale == 1)
         {
             isFacingRight = !isFacingRight;
             Vector3 theScale = transform.localScale;
@@ -113,6 +118,18 @@ public class playerMovement : MonoBehaviour
     }
     public void Knockback(Vector2 direction, float force)
     {
-        rb.AddForce(direction.normalized * force, ForceMode2D.Impulse); //impulse for now, idk if right
+        if (!isKnockedBack)
+        {
+            isKnockedBack = true;
+            rb.linearVelocity = Vector2.zero; // Reset velocity to ensure knockback is noticeable
+            rb.AddForce(direction.normalized * force, ForceMode2D.Impulse);
+            StartCoroutine(ResetKnockback());
+        }
+    }
+
+    private IEnumerator ResetKnockback()
+    {
+        yield return new WaitForSeconds(knockbackDuration);
+        isKnockedBack = false;
     }
 }

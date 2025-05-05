@@ -18,7 +18,8 @@ public class Enemies : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        player = GameObject.Find("Player").transform;
+        LoadCanvas = GameObject.Find("LoadCanvas");
         rb = GetComponent<Rigidbody2D>();
         originalPosition = transform.position;
         rb.gravityScale = 0f; // Disable gravity

@@ -9,11 +9,13 @@ public class SelfBox : MonoBehaviour
     public LayerMask groundLayer;
     private bool isChecking = false;
     private bool isPushed = false;
+    private Rigidbody2D rb;
     void Start()
     {
         originalPosition = transform.position;
         player = GameObject.Find("Player");
         animator = player.GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class SelfBox : MonoBehaviour
             isPushed = true;
         }
         currentPosition = transform.position;
-        if (GetComponent<Collider2D>().IsTouching(player.GetComponent<Collider2D>()) && isPushed)
+        if (GetComponent<Collider2D>().IsTouching(player.GetComponent<Collider2D>()) && isPushed && GetComponent<Rigidbody2D>().linearVelocity.x != 0)
         {
             animator.SetBool("isPushing", true);
         }
@@ -41,7 +43,8 @@ public class SelfBox : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D other) //checker for ground collision, and move left or right to find a suitable spot
     {
-        if (other.CompareTag("Ground") && isChecking == false)
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        if ((other.CompareTag("Ground Present") || other.CompareTag("Platform Present") || other.CompareTag("Ground Past")|| other.CompareTag("Platform Past")|| other.CompareTag("Ground Future")|| other.CompareTag("Platform Future") ) && isChecking == false)
         {
             GetComponent<SpriteRenderer>().enabled = false;
             isChecking = true;
@@ -77,5 +80,6 @@ public class SelfBox : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = true;
             isChecking = false;
         }
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }

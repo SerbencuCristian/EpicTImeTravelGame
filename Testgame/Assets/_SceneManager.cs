@@ -12,7 +12,6 @@ public class _SceneManager : MonoBehaviour
         }
         if (instance)
         {
-
             //GameObject.Find("Player").GetComponent<PlayerHealth>().TakeDamage(GameObject.Find("Player").GetComponent<PlayerHealth>().maxHealth);
             //instead set a flag for insta death on player start and set to right checkpoint
             Destroy (gameObject);

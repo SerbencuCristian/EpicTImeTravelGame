@@ -12,15 +12,14 @@ public class GameController : MonoBehaviour
     public GameObject LoadCanvas;
     public GameObject[] grounds;
     private Enemies[] enemies; //added by hand, could be done with findallbytag but it could be expensive performance-wise, i avoided
-    private int timeindicator = 2;
+    public int timeindicator;
     public HealthUI healthUI;
     private PlayerHealth playerHealth;
     public Vector2 lastCheckpoint;
-    public GameObject _Scenemanager;
+    public GameObject SaveData;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        _Scenemanager = GameObject.Find("SceneManager");
         healthUI = FindObjectsOfType<HealthUI>()[0];
         player = GameObject.FindWithTag("Player");
         LoadCanvas = GameObject.Find("LoadCanvas");
@@ -42,31 +41,25 @@ public class GameController : MonoBehaviour
         LoadCanvas.GetComponent<LoadScript>().OnHoldComplete += ChangeTime;
         PlayerHealth.Death += ChangeTime;
         //basically set ground to present, we start in the present
-        grounds[4].layer = LayerMask.NameToLayer("disabled");
-        grounds[4].GetComponent<TilemapRenderer>().enabled = false;
-        grounds[4].GetComponent<TilemapCollider2D>().enabled = false;
-        grounds[5].layer = LayerMask.NameToLayer("disabled");
-        grounds[5].GetComponent<TilemapRenderer>().enabled = false;
-        grounds[5].GetComponent<TilemapCollider2D>().enabled = false;
-        grounds[1].layer = LayerMask.NameToLayer("disabled");
-        grounds[1].GetComponent<TilemapRenderer>().enabled = false;
-        grounds[1].GetComponent<TilemapCollider2D>().enabled = false;
-        grounds[0].layer = LayerMask.NameToLayer("disabled");
-        grounds[0].GetComponent<TilemapRenderer>().enabled = false;
-        grounds[0].GetComponent<TilemapCollider2D>().enabled = false;
-        grounds[2].layer = LayerMask.NameToLayer("ground");
-        grounds[2].GetComponent<TilemapRenderer>().enabled = true;
-        grounds[2].GetComponent<TilemapCollider2D>().enabled = true;
-        grounds[2].GetComponent<TilemapCollider2D>().usedByComposite = true;
-        grounds[3].layer = LayerMask.NameToLayer("ground");
-        grounds[3].GetComponent<TilemapRenderer>().enabled = true;
-        grounds[3].GetComponent<TilemapCollider2D>().enabled = true;
-        grounds[3].GetComponent<TilemapCollider2D>().usedByComposite = true;
+        SaveData = GameObject.Find("SaveData");
+        if(SaveData.GetComponent<SaveData>().data.timeindicator != 0)
+        {
+            timeindicator = SaveData.GetComponent<SaveData>().data.timeindicator;
+            LoadCanvas.GetComponent<LoadScript>().lastpress = SaveData.GetComponent<SaveData>().data.timeindicator;
+            LoadCanvas.GetComponent<LoadScript>().timeindicator = SaveData.GetComponent<SaveData>().data.timeindicator;
+        }
+        else
+        {
+            timeindicator=2;
+        }
+        ChangeTime();
+        if(SaveData.GetComponent<SaveData>().data.lastCheckpoint != new Vector2 (player.GetComponent<Rigidbody2D>().transform.position.x , player.GetComponent<Rigidbody2D>().transform.position.y) && SaveData.GetComponent<SaveData>().data.lastCheckpoint != Vector2.zero)
+        {
+            lastCheckpoint = SaveData.GetComponent<SaveData>().data.lastCheckpoint;
+            reseter=true;
+            ChangeTime();
+        }
         
-    }
-    void Update()
-    {
-        _Scenemanager.GetComponent<_SceneManager>().lastcheckpoint = lastCheckpoint;
     }
     void ChangeTime()
     {
@@ -185,7 +178,7 @@ public class GameController : MonoBehaviour
             }
             healthUI.GetComponent<HealthUI>().SetHealth(playerHealth.maxHealth); //set health to max
             playerHealth.currentHealth = playerHealth.maxHealth;
-            player.transform.position = lastCheckpoint; //teleport player to last checkpoint
+            player.transform.position = new Vector2(lastCheckpoint.x,lastCheckpoint.y+1f); //teleport player to last checkpoint
             playerHealth.ResetEnergy();
             reseter = false;
         }

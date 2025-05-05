@@ -15,6 +15,7 @@ public class checkpoint : MonoBehaviour
     void Awake()
     {
         LoadCanvas = GameObject.Find("LoadCanvas");
+        GameController = GameObject.Find("GameController");
     }
     // Update is called once per frame
     void Update()

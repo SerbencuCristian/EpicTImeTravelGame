@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Random Brush
   m_EditorClassIdentifier: 
   m_Cells:
-  - m_Tile: {fileID: 11400000, guid: 5b4f04e789a603441bfe8ddc140e51c3, type: 2}
+  - m_Tile: {fileID: 0}
     m_Matrix:
       e00: 1
       e01: 0
@@ -44,17 +44,13 @@ MonoBehaviour:
   randomTileSetSize: {x: 1, y: 1, z: 1}
   randomTileSets:
   - randomTiles:
-    - {fileID: 11400000, guid: 2fcea681088f6b645933c63c40fdde1f, type: 2}
+    - {fileID: 11400000, guid: e34fe2f1bccc9384ca3350fc87ff5fcd, type: 2}
   - randomTiles:
     - {fileID: 0}
-  - randomTiles:
-    - {fileID: 11400000, guid: 5cf722b16e0cac7449111fa9757bc9be, type: 2}
-  - randomTiles:
-    - {fileID: 11400000, guid: 5b4f04e789a603441bfe8ddc140e51c3, type: 2}
   randomTileChangeDataSets:
   - randomTileChangeData:
-    - m_Position: {x: -97, y: 4, z: 0}
-      m_TileAsset: {fileID: 11400000, guid: 2fcea681088f6b645933c63c40fdde1f, type: 2}
+    - m_Position: {x: 0, y: 0, z: 0}
+      m_TileAsset: {fileID: 11400000, guid: e34fe2f1bccc9384ca3350fc87ff5fcd, type: 2}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
       m_Transform:
         e00: 1
@@ -76,48 +72,6 @@ MonoBehaviour:
   - randomTileChangeData:
     - m_Position: {x: 0, y: 0, z: 0}
       m_TileAsset: {fileID: 0}
-      m_Color: {r: 1, g: 1, b: 1, a: 1}
-      m_Transform:
-        e00: 1
-        e01: 0
-        e02: 0
-        e03: 0
-        e10: 0
-        e11: 1
-        e12: 0
-        e13: 0
-        e20: 0
-        e21: 0
-        e22: 1
-        e23: 0
-        e30: 0
-        e31: 0
-        e32: 0
-        e33: 1
-  - randomTileChangeData:
-    - m_Position: {x: 0, y: 0, z: 0}
-      m_TileAsset: {fileID: 11400000, guid: 5cf722b16e0cac7449111fa9757bc9be, type: 2}
-      m_Color: {r: 1, g: 1, b: 1, a: 1}
-      m_Transform:
-        e00: 1
-        e01: 0
-        e02: 0
-        e03: 0
-        e10: 0
-        e11: 1
-        e12: 0
-        e13: 0
-        e20: 0
-        e21: 0
-        e22: 1
-        e23: 0
-        e30: 0
-        e31: 0
-        e32: 0
-        e33: 1
-  - randomTileChangeData:
-    - m_Position: {x: 0, y: 0, z: 0}
-      m_TileAsset: {fileID: 11400000, guid: 5b4f04e789a603441bfe8ddc140e51c3, type: 2}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
       m_Transform:
         e00: 1

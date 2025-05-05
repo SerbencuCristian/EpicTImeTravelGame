@@ -462,6 +462,7 @@
 "Assets/Scripts/PlayerHealth.cs"
 "Assets/Scripts/playerMovement.cs"
 "Assets/Scripts/PlayerShoot.cs"
+"Assets/Scripts/SaveData.cs"
 "Assets/Scripts/SelfBox.cs"
 "Assets/Scripts/SettingsScript.cs"
 "Assets/Scripts/StartCanvas.cs"
