@@ -493,7 +493,7 @@ public class LoadScript : MonoBehaviour
         HoldingTS = true;
         isAnimating = true;
         animatorTimeSight.SetTrigger("TimeSightOn");
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.55f);
         isAnimating = false;
         Holder.SetActive(false);
         if(lastpress == 1 && lastpress != timeindicator)

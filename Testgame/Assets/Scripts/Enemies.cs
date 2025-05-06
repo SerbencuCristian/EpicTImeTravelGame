@@ -15,6 +15,7 @@ public class Enemies : MonoBehaviour
     public LayerMask disabledLayer;
     private Rigidbody2D rb;
     public bool move = true;
+    public bool isHurting = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -79,10 +80,21 @@ public class Enemies : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        if (!isHurting)
+            StartCoroutine(Iframes()); // Start the invincibility frames coroutine
         if (currentHealth <= 0)
         {
             Die();
         }
+    }
+    private IEnumerator Iframes()
+    {
+        isHurting = true; // Set the isHurting flag to true
+        Color originalColor = spriteRenderer.color; // Store the original color
+        spriteRenderer.color = Color.red; // Set color to white
+        yield return new WaitForSeconds(0.2f); // Wait for a short duration
+        spriteRenderer.color = originalColor; // Revert to the original color
+        isHurting = false; // Reset the isHurting flag
     }
     private void Die()
     {

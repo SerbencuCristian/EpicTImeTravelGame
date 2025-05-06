@@ -26,6 +26,9 @@ public class SaveData : MonoBehaviour
         }
         else
         {
+            data = new Data();
+            data.lastCheckpoint = Vector2.zero;
+            data.timeindicator = 0;
             SaveToJson();
         }
     }
