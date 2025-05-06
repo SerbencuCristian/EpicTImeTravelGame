@@ -7,7 +7,7 @@ public class Enemies : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private CircleCollider2D circleCollider2D;
     private bool isDead = false;
-    private int maxHealth = 5;
+    private int maxHealth = 10;
     private Vector2 originalPosition;
     public Transform player;
     public GameObject LoadCanvas;

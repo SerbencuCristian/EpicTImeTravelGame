@@ -22,7 +22,6 @@ public class GameController : MonoBehaviour
     {
         healthUI = FindObjectsOfType<HealthUI>()[0];
         player = GameObject.FindWithTag("Player");
-        LoadCanvas = GameObject.Find("LoadCanvas");
         boxes = FindObjectsOfType<Boxes>();
         enemies = FindObjectsOfType<Enemies>();
         grounds[0] = GameObject.FindWithTag("Ground Past");
@@ -34,12 +33,12 @@ public class GameController : MonoBehaviour
     }
     void Start()
     {
-        
+        LoadCanvas = GameObject.Find("LoadCanvas");
         lastCheckpoint = player.transform.position;
         playerHealth = player.GetComponent<PlayerHealth>();
         //invokes of actions
         LoadCanvas.GetComponent<LoadScript>().OnHoldComplete += ChangeTime;
-        PlayerHealth.Death += ChangeTime;
+        player.GetComponent<PlayerHealth>().Death += ChangeTime;
         //basically set ground to present, we start in the present
         SaveData = GameObject.Find("SaveData");
         if(SaveData.GetComponent<SaveData>().data.timeindicator != 0)

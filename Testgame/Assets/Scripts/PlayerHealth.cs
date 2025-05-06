@@ -16,11 +16,16 @@ public class PlayerHealth : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     bool isInvincible = false; // Flag to check if the player is invincible
     private playerMovement playerMovement; // Reference to the playerMovement script
-    public static event Action Death;
+    public event Action Death;
     public Image EnergyBar;
     public GameObject GameController; // Reference to the GameController GameObject
+    void Awake()
+    {
+        GameController = GameObject.Find("GameController"); // Find the GameController GameObject in the scene
+    }
     void Start()
     {
+        EnergyBar = GameObject.Find("EnergyBar").GetComponent<Image>(); // Find the EnergyBar GameObject in the scene
         currentEnergy = maxEnergy;
         EnergyBar.GetComponent<EnergyBarUI>().currentEnergy = currentEnergy;
         currentHealth = maxHealth; // Initialize current health to max health

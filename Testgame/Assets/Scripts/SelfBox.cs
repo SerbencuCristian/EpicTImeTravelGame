@@ -10,9 +10,12 @@ public class SelfBox : MonoBehaviour
     private bool isChecking = false;
     private bool isPushed = false;
     private Rigidbody2D rb;
-    void Start()
+    void Awake()
     {
         originalPosition = transform.position;
+    }
+    void Start()
+    {
         player = GameObject.Find("Player");
         animator = player.GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
