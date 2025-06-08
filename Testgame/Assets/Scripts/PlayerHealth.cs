@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
     public event Action Death;
     public Image EnergyBar;
     public GameObject GameController; // Reference to the GameController GameObject
+    public Animator animator; // Reference to the Animator component
     void Awake()
     {
         GameController = GameObject.Find("GameController"); // Find the GameController GameObject in the scene
@@ -32,6 +33,7 @@ public class PlayerHealth : MonoBehaviour
         healthUI.SetMaxHealth(maxHealth); // Set the max health in the UI
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component
         playerMovement = GetComponent<playerMovement>(); // Get the playerMovement component
+        animator = GetComponent<Animator>(); // Get the Animator component
     }
     void Update()
     {
@@ -50,7 +52,10 @@ public class PlayerHealth : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        if (isInvincible) return;
+        
         currentHealth -= damage; // Decrease current health by damage amount
+        animator.SetTrigger("Damaged");
         healthUI.SetHealth(currentHealth); // Update the health UI
         StartCoroutine(Iframes());
         if (currentHealth <= 0)

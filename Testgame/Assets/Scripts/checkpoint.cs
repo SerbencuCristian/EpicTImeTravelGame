@@ -12,10 +12,12 @@ public class checkpoint : MonoBehaviour
     public bool collision = false;
     public GameObject GameController;
     public GameObject LoadCanvas;
+    public Animator animator;
     void Awake()
     {
         LoadCanvas = GameObject.Find("LoadCanvas");
         GameController = GameObject.Find("GameController");
+        animator = GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -32,6 +34,8 @@ public class checkpoint : MonoBehaviour
         {
             collision = true;
             GameController.GetComponent<GameController>().lastCheckpoint = transform.position;
+            animator.SetBool("isHovered",true);
+
         }
     }
     void OnTriggerExit2D(Collider2D col)
@@ -41,6 +45,7 @@ public class checkpoint : MonoBehaviour
             collision = false;
             GameController.GetComponent<GameController>().reseter = false;
             LoadCanvas.GetComponent<LoadScript>().reseter = false;
+            animator.SetBool("isHovered",false);
         }
     }
 }

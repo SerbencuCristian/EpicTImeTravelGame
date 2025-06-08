@@ -135,7 +135,7 @@ public class LoadScript : MonoBehaviour
                 //Time travel section
                 timeindicator = lastpress;
                 OnHoldComplete.Invoke();
-                cooldown = 5f;
+                cooldown = 2.5f;
                 ok = false;
                 ResetHold();
             }
@@ -180,7 +180,7 @@ public class LoadScript : MonoBehaviour
             }
             else if (context.canceled)//button lifted
             {
-                cooldown = Mathf.Max(cooldown, 1f);
+                cooldown = Mathf.Max(cooldown, 0.5f);
                 ResetHold();
             }
             
@@ -429,74 +429,70 @@ public class LoadScript : MonoBehaviour
     {
         if(context.started && lastpress != timeindicator && !HoldingTS && Time.timeScale ==1)
         {
-            StartCoroutine(TimeSightAnim()); //split into a coroutine so it can be animated
+            animatorTimeSight.SetTrigger("TimeSightOn");
         }
-        else if (context.canceled && HoldingTS && !isAnimating && Time.timeScale ==1)
-        {   //disable all times and boxes and enable just the one you need
-            Player.GetComponent<playerMovement>().enabled = true;
-            grounds[2].GetComponent<TilemapRenderer>().enabled = false;
-            grounds[1].GetComponent<TilemapRenderer>().enabled = false;
-            grounds[0].GetComponent<TilemapRenderer>().enabled = false;
-            grounds[3].GetComponent<TilemapRenderer>().enabled = false;
-            grounds[4].GetComponent<TilemapRenderer>().enabled = false;
-            grounds[5].GetComponent<TilemapRenderer>().enabled = false;
-            foreach (GameObject box in Pastboxes)
-            {
-                box.GetComponent<SpriteRenderer>().enabled = false;
-            }
-            foreach (GameObject box in Presentboxes)
-            {
-                box.GetComponent<SpriteRenderer>().enabled = false;
-            }
-            foreach (GameObject box in Futureboxes)
-            {
-                box.GetComponent<SpriteRenderer>().enabled = false;
-            }
-            if(timeindicator == 1)
-            {
-                foreach (GameObject box in Pastboxes)
-                {
-                    box.GetComponent<SpriteRenderer>().enabled = true;
-                }
-                grounds[0].GetComponent<TilemapRenderer>().enabled = true;
-                grounds[1].GetComponent<TilemapRenderer>().enabled = true;
-            }
-            else if(timeindicator == 2)
-            {
-                foreach (GameObject box in Presentboxes)
-                {
-                    box.GetComponent<SpriteRenderer>().enabled = true;
-                }
-                grounds[2].GetComponent<TilemapRenderer>().enabled = true;
-                grounds[3].GetComponent<TilemapRenderer>().enabled = true;
-            }
-            else if(timeindicator == 3)
-            {
-                foreach (GameObject box in Futureboxes)
-                {
-                    box.GetComponent<SpriteRenderer>().enabled = true;
-                }
-                grounds[4].GetComponent<TilemapRenderer>().enabled = true;
-                grounds[5].GetComponent<TilemapRenderer>().enabled = true;
-            }
-            if (timeindicator != lastpress)
-            {
-                animatorTimeSight.SetTrigger("TimeSightOff");
-                Holder.SetActive(true);
-            }
+        else if (context.canceled && HoldingTS && Time.timeScale ==1 && GameObject.Find("TimeSightOverlay").GetComponent<TimeSightOverlay>().isHolding == true)
+        {
+            animatorTimeSight.SetTrigger("TimeSightOff");
+            Holder.SetActive(true);
             HoldingTS = false; 
         }
         
     }
-    private IEnumerator TimeSightAnim()
+    public void TimeSightOff()
+    {
+        Player.GetComponent<playerMovement>().enabled = true;
+        grounds[2].GetComponent<TilemapRenderer>().enabled = false;
+        grounds[1].GetComponent<TilemapRenderer>().enabled = false;
+        grounds[0].GetComponent<TilemapRenderer>().enabled = false;
+        grounds[3].GetComponent<TilemapRenderer>().enabled = false;
+        grounds[4].GetComponent<TilemapRenderer>().enabled = false;
+        grounds[5].GetComponent<TilemapRenderer>().enabled = false;
+        foreach (GameObject box in Pastboxes)
+        {
+            box.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        foreach (GameObject box in Presentboxes)
+        {
+            box.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        foreach (GameObject box in Futureboxes)
+        {
+            box.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        if(timeindicator == 1)
+        {
+            foreach (GameObject box in Pastboxes)
+            {
+                box.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            grounds[0].GetComponent<TilemapRenderer>().enabled = true;
+            grounds[1].GetComponent<TilemapRenderer>().enabled = true;
+        }
+        else if(timeindicator == 2)
+        {
+            foreach (GameObject box in Presentboxes)
+            {
+                box.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            grounds[2].GetComponent<TilemapRenderer>().enabled = true;
+            grounds[3].GetComponent<TilemapRenderer>().enabled = true;
+        }
+        else if(timeindicator == 3)
+        {
+            foreach (GameObject box in Futureboxes)
+            {
+                box.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            grounds[4].GetComponent<TilemapRenderer>().enabled = true;
+            grounds[5].GetComponent<TilemapRenderer>().enabled = true;
+        }
+    }
+    public void TimeSightAnim()
     {
         HoldingTS = true;
-        isAnimating = true;
-        animatorTimeSight.SetTrigger("TimeSightOn");
-        yield return new WaitForSeconds(0.55f);
-        isAnimating = false;
         Holder.SetActive(false);
-        if(lastpress == 1 && lastpress != timeindicator)
+        if (lastpress == 1 && lastpress != timeindicator)
         {
             Player.GetComponent<playerMovement>().enabled = false;
             Player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
@@ -520,7 +516,7 @@ public class LoadScript : MonoBehaviour
             grounds[1].GetComponent<TilemapRenderer>().enabled = true;
 
         }
-        else if(lastpress == 2 && lastpress != timeindicator)
+        else if (lastpress == 2 && lastpress != timeindicator)
         {
             Player.GetComponent<playerMovement>().enabled = false;
             Player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
@@ -543,7 +539,7 @@ public class LoadScript : MonoBehaviour
             grounds[2].GetComponent<TilemapRenderer>().enabled = true;
             grounds[3].GetComponent<TilemapRenderer>().enabled = true;
         }
-        else if(lastpress == 3 && lastpress != timeindicator)
+        else if (lastpress == 3 && lastpress != timeindicator)
         {
             Player.GetComponent<playerMovement>().enabled = false;
             Player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;

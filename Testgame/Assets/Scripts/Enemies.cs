@@ -16,7 +16,12 @@ public class Enemies : MonoBehaviour
     private Rigidbody2D rb;
     public bool move = true;
     public bool isHurting = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Animator animator;
+    public bool isFacingRight = true; // Track the facing direction
+    public bool isAttacking = false; // Track if the enemy is attacking
+                                     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float attackcooldown = 0f;
+    public CircleCollider2D attackCollider; // Collider for the attack area
     void Start()
     {
         player = GameObject.Find("Player").transform;
@@ -26,15 +31,29 @@ public class Enemies : MonoBehaviour
         rb.gravityScale = 0f; // Disable gravity
         spriteRenderer = GetComponent<SpriteRenderer>();
         circleCollider2D = GetComponent<CircleCollider2D>();
+        animator = GetComponent<Animator>();
+        attackCollider = transform.GetChild(0).gameObject.GetComponent<CircleCollider2D>();
+        attackCollider.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!LoadCanvas.GetComponent<LoadScript>().isHolding && move && !isDead)
+        if (!isDead && attackcooldown > 0)
+        {
+            attackcooldown -= Time.deltaTime; // Decrease cooldown timer
+        }
+        if (move && !isDead && !isAttacking)
+            Flip();
+        if (move && !isDead && !isAttacking)
         {
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-            if (distanceToPlayer <= 10f)
+            if (distanceToPlayer <= 4f && attackcooldown <= 0f)
+            {
+                attackcooldown = 5f;
+                AttackPlayer();
+            }
+            else if (distanceToPlayer <= 10f)
             {
                 Vector2 directionToPlayer = ((Vector2)player.position - (Vector2)transform.position).normalized; //get direction to player as a vector
                 rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, directionToPlayer * Flyspeed, Time.deltaTime * 5f);//move to player
@@ -54,16 +73,34 @@ public class Enemies : MonoBehaviour
             rb.linearVelocity = Vector2.zero; // Stop moving when holding for time travel
         }
     }
+    private void Flip() //flip sprite when turning around
+    {
+        if (rb.linearVelocity.x > 0 && !isFacingRight)
+        {
+            isFacingRight = true;
+            spriteRenderer.flipX = false; // Flip the sprite to face right
+        }
+        else if (rb.linearVelocity.x < 0 && isFacingRight)
+        {
+            isFacingRight = false;
+            spriteRenderer.flipX = true; // Flip the sprite to face left
+        }
+    }
     public void MoveToOriginalPosition() //move back home on death or reset
     {
         transform.position = originalPosition;
         currentHealth = maxHealth;
-        if (isDead) //revive if dead
+        if (isDead)
         {
             isDead = false;
+            animator.SetBool("Dead", isDead);
             spriteRenderer.enabled = true;
             circleCollider2D.enabled = true;
-        } 
+            isAttacking = false;
+            isHurting = false;
+            isFacingRight = true;
+
+        }
     }
     public void Knockback(Vector2 direction, float force)
     {
@@ -75,17 +112,42 @@ public class Enemies : MonoBehaviour
     {
         move = false;
         yield return new WaitForSeconds(1f);
+        rb.linearVelocity = Vector2.zero;
         move = true;
     }
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        if (!isHurting)
-            StartCoroutine(Iframes()); // Start the invincibility frames coroutine
-        if (currentHealth <= 0)
+        if (!isDead)
         {
-            Die();
+            currentHealth -= damage;
+            if (!isHurting)
+                StartCoroutine(Iframes()); // Start the invincibility frames coroutine
+            if (currentHealth <= 0)
+            {
+                StartCoroutine(Die());
+            }
         }
+    }
+    public void OnAttackHit()
+    {
+        attackCollider.enabled = true;
+        Vector2 directionToPlayer = ((Vector2)player.position - (Vector2)transform.position).normalized;
+        rb.linearVelocity = directionToPlayer * 10f;
+        Flip();
+    }
+    public void OnAttackExit()
+    {
+        attackCollider.enabled = false; // Disable the attack collider after the attack
+        rb.linearVelocity = Vector2.zero; // Stop moving after the attack
+        isAttacking = false; // Reset the attacking state
+        move = true;
+    }
+    private void AttackPlayer()
+    {
+        isAttacking = true;
+        move = false;
+        rb.linearVelocity = Vector2.zero;
+        animator.SetTrigger("Attack");
     }
     private IEnumerator Iframes()
     {
@@ -96,10 +158,15 @@ public class Enemies : MonoBehaviour
         spriteRenderer.color = originalColor; // Revert to the original color
         isHurting = false; // Reset the isHurting flag
     }
-    private void Die()
+    private IEnumerator Die()
     {
+        if(!isDead){
+        isDead = true;
+        animator.SetBool("Dead",isDead);
+        animator.SetTrigger("Death");
+        yield return new WaitForSeconds(1f); 
         spriteRenderer.enabled = false;
         circleCollider2D.enabled = false;
-        isDead = true;
+    }
     }
 }
