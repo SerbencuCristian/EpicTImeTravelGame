@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\BackgroundParallax.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\playerMovement.cs" />
+    <Compile Include="Assets\CutsceneTrigger.cs" />
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
     <Compile Include="Assets\TimeSightOverlay.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
@@ -83,9 +84,11 @@
     <Compile Include="Assets\EnemyAttack.cs" />
     <Compile Include="Assets\Scripts\Enemies.cs" />
     <Compile Include="Assets\Scripts\SelfBox.cs" />
+    <Compile Include="Assets\Intro.cs" />
     <Compile Include="Assets\_SceneManager.cs" />
     <Compile Include="Assets\Scripts\checkpoint.cs" />
     <Compile Include="Assets\Scripts\Boxes.cs" />
+    <Compile Include="Assets\Explosion.cs" />
     <Compile Include="Assets\Scripts\DeathPit.cs" />
   </ItemGroup>
   <ItemGroup>
