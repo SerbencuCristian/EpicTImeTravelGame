@@ -7,7 +7,12 @@ public class PauseMenu : MonoBehaviour
     public GameObject Pausemenu;
     public GameObject player;
     public GameObject settingsImage;
+    private PlayerControls controls;
 
+    void Awake()
+    {
+        controls = KeybindManager.Instance.controls;
+    }
     void Start()
     {
         Pausemenu = GameObject.Find("PauseMenu");
@@ -49,14 +54,18 @@ public class PauseMenu : MonoBehaviour
         #endif //for editor
         Application.Quit();//for build
     }
+    void OnEnable()
+    {
+        controls.Player.Pause.performed += PauseGame;
+    }
     public void PauseGame(InputAction.CallbackContext context)
     {
-        if(context.performed && Time.timeScale == 1)
+        if (context.performed && Time.timeScale == 1)
         {
-            Time.timeScale=0;
+            Time.timeScale = 0;
             Pausemenu.SetActive(true);
         }
-        else if(context.performed && !settingsImage.activeSelf)
+        else if (context.performed && !settingsImage.activeSelf)
         {
             ResumeButton();
         }

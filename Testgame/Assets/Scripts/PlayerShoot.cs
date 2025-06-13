@@ -12,21 +12,28 @@ public class PlayerShoot : MonoBehaviour
     public float projectileSpeed = 0.5f;
     public float shootCooldown = 0.5f; // Cooldown duration in seconds
     private float lastShootTime = -0.5f; // Tracks the time of the last shot
+    private PlayerControls controls;
     void Awake()
     {
+        controls = KeybindManager.Instance.controls;  
         player = GameObject.Find("Player");
         animator = player.GetComponent<Animator>();
     }
-    void Update()
+    void OnEnable()
     {
-        if (Input.GetMouseButtonDown(0) && Time.timeScale == 1 && Time.time >= lastShootTime + shootCooldown) // Check cooldown
+        controls.Player.Shoot.performed += OnShoot; // Subscribe to the Shoot action
+        controls.Enable();
+    }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if (context.performed && Time.timeScale == 1 && Time.time >= lastShootTime + shootCooldown) // Check cooldown
         {
             animator.SetTrigger("Shoot");
             StartCoroutine(Shoot());
-            lastShootTime = Time.time; // Update the last shoot time
+            lastShootTime = Time.time;
         }
     }
-
     private IEnumerator Shoot()
     {
         yield return new WaitForSeconds(0.25f);

@@ -1122,7 +1122,47 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nature_props_01_0: -3898529755166009890
+      Nature_props_01_1: 1414768688058416095
+      Nature_props_01_10: -3431608867728435215
+      Nature_props_01_11: 4792240087041307686
+      Nature_props_01_12: -682835440121221220
+      Nature_props_01_13: -3747105201569410530
+      Nature_props_01_14: 2864100972720691878
+      Nature_props_01_15: 8454680781399133512
+      Nature_props_01_16: -3258925790284622917
+      Nature_props_01_17: 777644401421326818
+      Nature_props_01_18: 4283427052853158982
+      Nature_props_01_19: -6535320499154014688
+      Nature_props_01_2: 1894321607007528384
+      Nature_props_01_20: -3261991466957389485
+      Nature_props_01_21: -4524594014719187892
+      Nature_props_01_22: 9097937587758459269
+      Nature_props_01_23: 8594180769985887413
+      Nature_props_01_24: 5624612969857451632
+      Nature_props_01_25: -1496688925686365003
+      Nature_props_01_26: 2178483454435266809
+      Nature_props_01_27: -4001746386696757949
+      Nature_props_01_28: -7087062367374830951
+      Nature_props_01_29: -1999418424058300274
+      Nature_props_01_3: -6013803439407616292
+      Nature_props_01_30: 4968235071229758049
+      Nature_props_01_31: -1029220187505999013
+      Nature_props_01_32: -431383759574991763
+      Nature_props_01_33: 7255716236024796931
+      Nature_props_01_34: 108827590808026260
+      Nature_props_01_35: -8661997736390944031
+      Nature_props_01_36: -3819220882070082468
+      Nature_props_01_37: 5184075397452278445
+      Nature_props_01_38: -3065525269827713684
+      Nature_props_01_39: 1283964216059649769
+      Nature_props_01_4: -6910444156008308288
+      Nature_props_01_5: 2954950897823386039
+      Nature_props_01_6: -6905026858760714720
+      Nature_props_01_7: -2694973325817016481
+      Nature_props_01_8: 1160734976151833043
+      Nature_props_01_9: 4829928645310114386
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

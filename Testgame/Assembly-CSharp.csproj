@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\FadeUI.cs" />
     <Compile Include="Assets\Scripts\LoadScript.cs" />
     <Compile Include="Assets\Scripts\StartCanvas.cs" />
+    <Compile Include="Assets\Fire.cs" />
     <Compile Include="Assets\Scripts\HealthUI.cs" />
     <Compile Include="Assets\Scripts\BackgroundParallax.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\EnergyBarUI.cs" />
     <Compile Include="Assets\Scripts\SaveData.cs" />
+    <Compile Include="Assets\KeybindManager.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />
     <Compile Include="Assets\Scripts\SettingsScript.cs" />
     <Compile Include="Assets\EnemyAttack.cs" />
@@ -88,7 +90,9 @@
     <Compile Include="Assets\_SceneManager.cs" />
     <Compile Include="Assets\Scripts\checkpoint.cs" />
     <Compile Include="Assets\Scripts\Boxes.cs" />
+    <Compile Include="Assets\PlayerControls.cs" />
     <Compile Include="Assets\Explosion.cs" />
+    <Compile Include="Assets\LabBg.cs" />
     <Compile Include="Assets\Scripts\DeathPit.cs" />
   </ItemGroup>
   <ItemGroup>

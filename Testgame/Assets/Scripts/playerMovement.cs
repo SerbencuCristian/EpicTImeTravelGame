@@ -22,7 +22,7 @@ public class playerMovement : MonoBehaviour
     public Transform groundCheck;
     public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
     public LayerMask groundLayer;
-    public int maxJumps = 2;
+    public int maxJumps = 1;
     public int jumpCount = 0;
 
     public float basicGravity = 2f;
@@ -35,6 +35,12 @@ public class playerMovement : MonoBehaviour
     // public float currentEnergy;
     private bool isKnockedBack = false;
     private float knockbackDuration = 0.2f; // Duration of the knockback effect
+    private PlayerControls controls;
+
+    void Awake()
+    {
+        controls = KeybindManager.Instance.controls; // Use the shared instance
+    }
     private void Start()
     {
         boxCollider = GetComponent<CapsuleCollider2D>();
@@ -61,6 +67,16 @@ public class playerMovement : MonoBehaviour
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
         animator.SetFloat("magnitude", rb.linearVelocity.magnitude);
     }
+    void OnEnable()
+    {
+        controls.Player.Jump.performed += Jump;
+        controls.Player.MoveLeft.performed += MoveLeft;
+        controls.Player.MoveLeft.canceled += MoveLeft;
+        controls.Player.MoveRight.performed += MoveRight;
+        controls.Player.MoveRight.canceled += MoveRight;
+        controls.Player.Drop.performed += Drop;
+        controls.Enable(); // Enable the controls
+    }
     private void Gravity()
     {
         if (rb.linearVelocity.y < 0)
@@ -73,9 +89,27 @@ public class playerMovement : MonoBehaviour
             rb.gravityScale = basicGravity;
         }
     }
-    public void Move(InputAction.CallbackContext context)
+    public void MoveLeft(InputAction.CallbackContext context)
     {
-        horizontalMovement = context.ReadValue<Vector2>().x; //moves faster the harder you press the button
+        if (context.performed && Time.timeScale == 1)
+        {
+            horizontalMovement = -1f; // Move left
+        }
+        else if (context.canceled && horizontalMovement < 0)
+        {
+            horizontalMovement = 0f; // Stop moving when the input is released
+        }
+    }
+    public void MoveRight(InputAction.CallbackContext context)
+    {
+        if (context.performed && Time.timeScale == 1)
+        {
+            horizontalMovement = 1f; // Move right
+        }
+        else if (context.canceled  && horizontalMovement > 0)
+        {
+            horizontalMovement = 0f; // Stop moving when the input is released
+        }
     }
     public void Jump(InputAction.CallbackContext context)
     {

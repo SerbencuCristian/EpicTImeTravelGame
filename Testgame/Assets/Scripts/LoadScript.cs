@@ -25,7 +25,7 @@ public class LoadScript : MonoBehaviour
     public float cooldown = 0;
     public bool ok = true;
     private bool isAnimating = false;
-
+    public int aux;
     public Transform disabledCheck;
     public Vector2 disabledCheckSize = new Vector2(0.95f, 0.95f);
     public LayerMask disabledLayer;
@@ -35,12 +35,17 @@ public class LoadScript : MonoBehaviour
     public GameObject[] Pastboxes; //added by hand, again findallbytag could work, but i am scared to use it
     public GameObject[] Futureboxes;
     public GameObject[] Presentboxes;
-
     public int timeindicator = 2;
 
     public bool reseter = false;
     GameObject slider;
     public bool HoldingTS = false;
+    private PlayerControls controls;
+
+    void Awake()
+    {
+        controls = KeybindManager.Instance.controls; // Use the shared instance
+    }
     void Start()
     {
         camera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -200,6 +205,17 @@ public class LoadScript : MonoBehaviour
             
         }
     }
+    void OnEnable()
+    {
+        controls.Player.Past.performed += Pressed1;
+        controls.Player.Present.performed += Pressed2;
+        controls.Player.Future.performed += Pressed3;
+        controls.Player.TimeTravel.started += OnHold;
+        controls.Player.TimeTravel.canceled += OnHold;
+        controls.Player.TimeSight.started += TimeSight;
+        controls.Player.TimeSight.canceled += TimeSight;
+        controls.Enable();
+    }
     private void ResetHold() //reset after holding down the button
     {
         Player.GetComponent<playerMovement>().enabled = true;
@@ -211,7 +227,7 @@ public class LoadScript : MonoBehaviour
         Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         Player.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(Player.GetComponent<Rigidbody2D>().linearVelocity.x, -0.1f);
-        
+
     }
     private void FailHold() //didnt wanna repeat code
     {
