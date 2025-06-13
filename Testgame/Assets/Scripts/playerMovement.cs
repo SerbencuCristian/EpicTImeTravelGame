@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 public class playerMovement : MonoBehaviour
 {
     public Animator animator;
@@ -27,12 +28,17 @@ public class playerMovement : MonoBehaviour
     public float basicGravity = 2f;
     public float maxFallSpeed = 18f;
     public float fallMultiplier = 2f;
-
+    CapsuleCollider2D boxCollider;
     public float cooldown = 0;
     public bool ok = false;
+    public bool onPlatform = false;
     // public float currentEnergy;
     private bool isKnockedBack = false;
     private float knockbackDuration = 0.2f; // Duration of the knockback effect
+    private void Start()
+    {
+        boxCollider = GetComponent<CapsuleCollider2D>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -93,7 +99,33 @@ public class playerMovement : MonoBehaviour
             }
         }
     }
-
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if ((collision.gameObject.CompareTag("Platform Past") || collision.gameObject.CompareTag("Platform Present") || collision.gameObject.CompareTag("Platform Future")) && !onPlatform && Time.timeScale == 1)
+        {
+            onPlatform = true;
+        }
+    }
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        if ((collision.gameObject.CompareTag("Platform Past") || collision.gameObject.CompareTag("Platform Present") || collision.gameObject.CompareTag("Platform Future")) && onPlatform && Time.timeScale == 1)
+        {
+            onPlatform = false;
+        }
+    }
+    public void Drop(InputAction.CallbackContext context)
+    {
+        if (context.performed && LoadCanvas.GetComponent<LoadScript>().HoldingTS == false && Time.timeScale == 1 && onPlatform && boxCollider.enabled)
+        {
+            StartCoroutine(DisablePLayerCollider(0.35f));
+        }
+    }
+    private IEnumerator DisablePLayerCollider(float time)
+    {
+        boxCollider.enabled = false;
+        yield return new WaitForSeconds(time);
+        boxCollider.enabled = true;
+    }
     private void GroundCheck()
     {
         if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0f, groundLayer)) //check collision with ground

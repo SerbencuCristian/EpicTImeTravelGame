@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 public class LoadScript : MonoBehaviour
 {
+    public bool TimeTravelEnabled = false;
     public Camera camera;
     public Animator animatorTimeSight;
     public Animator animatorFade;
@@ -38,6 +39,7 @@ public class LoadScript : MonoBehaviour
     public int timeindicator = 2;
 
     public bool reseter = false;
+    GameObject slider;
     public bool HoldingTS = false;
     void Start()
     {
@@ -47,7 +49,12 @@ public class LoadScript : MonoBehaviour
         PastImage = GameObject.Find("PastImage").GetComponent<Image>();
         PresentImage = GameObject.Find("PresentImage").GetComponent<Image>();
         FutureImage = GameObject.Find("FutureImage").GetComponent<Image>();
+        PastImage.enabled = false;
+        PresentImage.enabled = false;
+        FutureImage.enabled = false;
         cooldownSlider = GameObject.Find("CooldownSlider").GetComponent<Slider>();
+        slider = GameObject.Find("CooldownSlider");
+        slider.SetActive(false);
         FillCircle = GameObject.Find("LoadCircle").GetComponent<Image>();
         Player = GameObject.Find("Player");
         Holder = GameObject.Find("Holder");
@@ -70,15 +77,22 @@ public class LoadScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (TimeTravelEnabled)
+        {
+            PastImage.enabled = true;
+            PresentImage.enabled = true;
+            FutureImage.enabled = true;
+            slider.SetActive(true);
+        }
         if (cooldown > 0) //lower cooldown
-        {
-            cooldown -= Time.deltaTime;
-        }
-        else if (ok == false) //enable back if cooldown done
-        {
-            FillCircle.color = Color.blue;
-            ok = true;
-        }
+            {
+                cooldown -= Time.deltaTime;
+            }
+            else if (ok == false) //enable back if cooldown done
+            {
+                FillCircle.color = Color.blue;
+                ok = true;
+            }
         cooldownSlider.value = cooldown;
         if (lastpress == 1) //set colors for whichever button was pressed
         {
@@ -165,7 +179,7 @@ public class LoadScript : MonoBehaviour
 
     public void OnHold(InputAction.CallbackContext context)
     {
-        if (ok == true && cooldown <= 0 && !HoldingTS && Time.timeScale ==1)
+        if (ok == true && cooldown <= 0 && !HoldingTS && Time.timeScale ==1 && TimeTravelEnabled)
         {
             if (context.started) //staring the hold
             {
@@ -406,32 +420,32 @@ public class LoadScript : MonoBehaviour
     }
     public void Pressed1(InputAction.CallbackContext context)
     {
-        if (context.performed && !isHolding && !HoldingTS && Time.timeScale ==1)
+        if (context.performed && !isHolding && !HoldingTS && Time.timeScale ==1 && TimeTravelEnabled)
         {
             lastpress = 1;
         }
     }
     public void Pressed2(InputAction.CallbackContext context)
     {
-        if (context.performed && !isHolding && !HoldingTS && Time.timeScale ==1)
+        if (context.performed && !isHolding && !HoldingTS && Time.timeScale ==1 && TimeTravelEnabled)
         {
             lastpress = 2;
         }
     }
     public void Pressed3(InputAction.CallbackContext context)
     {
-        if (context.performed && !isHolding && !HoldingTS && Time.timeScale ==1)
+        if (context.performed && !isHolding && !HoldingTS && Time.timeScale ==1 && TimeTravelEnabled)
         {
             lastpress = 3;
         }
     }
     public void TimeSight(InputAction.CallbackContext context) //looking into the other times
     {
-        if(context.started && lastpress != timeindicator && !HoldingTS && Time.timeScale ==1)
+        if(context.started && lastpress != timeindicator && !HoldingTS && Time.timeScale ==1 && TimeTravelEnabled)
         {
             animatorTimeSight.SetTrigger("TimeSightOn");
         }
-        else if (context.canceled && HoldingTS && Time.timeScale ==1 && GameObject.Find("TimeSightOverlay").GetComponent<TimeSightOverlay>().isHolding == true)
+        else if (context.canceled && HoldingTS && Time.timeScale ==1 && GameObject.Find("TimeSightOverlay").GetComponent<TimeSightOverlay>().isHolding == true && TimeTravelEnabled)
         {
             animatorTimeSight.SetTrigger("TimeSightOff");
             Holder.SetActive(true);
