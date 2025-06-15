@@ -148,6 +148,10 @@ public class Enemies : MonoBehaviour
         move = false;
         rb.linearVelocity = Vector2.zero;
         animator.SetTrigger("Attack");
+
+        SoundManager.Instance.PlayEnemyScream(); // Play enemy scream sound
+
+
     }
     private IEnumerator Iframes()
     {

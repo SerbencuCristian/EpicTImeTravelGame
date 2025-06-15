@@ -47,6 +47,7 @@ public class PlayerShoot : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         GameObject beamDot = Instantiate(beamDotPrefab, playerPosition, Quaternion.AngleAxis(angle, Vector3.forward));
         shootCooldown = 0.75f;
+        SoundManager.Instance.PlayLazerShoot();
     }
     public void ShootBeam(GameObject beamDot)
     {

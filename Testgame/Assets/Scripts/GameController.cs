@@ -114,6 +114,7 @@ public class GameController : MonoBehaviour
                     grounds[1].GetComponent<TilemapRenderer>().enabled = true;
                     grounds[1].GetComponent<TilemapCollider2D>().enabled = true;
                     grounds[1].GetComponent<TilemapCollider2D>().usedByComposite = true;
+                    SoundManager.Instance.TimeWarpSound(); //play time warp sound
                     break;    
                     case 2: //change to present
                     grounds[4].layer = LayerMask.NameToLayer("disabled");
@@ -136,6 +137,7 @@ public class GameController : MonoBehaviour
                     grounds[3].GetComponent<TilemapRenderer>().enabled = true;
                     grounds[3].GetComponent<TilemapCollider2D>().enabled = true;
                     grounds[3].GetComponent<TilemapCollider2D>().usedByComposite = true;
+                    SoundManager.Instance.TimeWarpSound(); //play time warp sound
                     break;
                 case 3: //change to future
                     grounds[2].layer = LayerMask.NameToLayer("disabled");
@@ -158,6 +160,7 @@ public class GameController : MonoBehaviour
                     grounds[5].GetComponent<TilemapRenderer>().enabled = true;
                     grounds[5].GetComponent<TilemapCollider2D>().enabled = true;
                     grounds[5].GetComponent<TilemapCollider2D>().usedByComposite = true;
+                    SoundManager.Instance.TimeWarpSound(); //play time warp sound
                     break;
                 default: //just in case if somethings goes bad, we go back to present
                     timeindicator = 2; 
@@ -181,6 +184,7 @@ public class GameController : MonoBehaviour
                     grounds[3].GetComponent<TilemapRenderer>().enabled = true;
                     grounds[3].GetComponent<TilemapCollider2D>().enabled = true;
                     grounds[3].GetComponent<TilemapCollider2D>().usedByComposite = true;
+                    SoundManager.Instance.TimeWarpSound(); //play time warp sound
                     break;
             }
             foreach (Boxes box in boxes) //tell each box to change the time

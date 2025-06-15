@@ -133,6 +133,7 @@ public class playerMovement : MonoBehaviour
                 animator.SetTrigger("jump");
                 //GetComponent<PlayerHealth>().currentEnergy -= 5; //energy cost of jump
                 dust.Play(); //create dust particle effect
+                SoundManager.Instance.PlayJumpSound(); //play jump sound
 
             }
             else if (context.canceled)
@@ -141,6 +142,7 @@ public class playerMovement : MonoBehaviour
                 jumpCount++;
                 animator.SetTrigger("jump");
                 dust.Play(); //create dust particle effect
+                SoundManager.Instance.PlayJumpSound(); //play jump sound
             }
         }
     }
