@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: f4ed02ba37e655543b8a5773588e25c5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - audioSource: {instanceID: 0}
+  - enemyScreamClip: {fileID: 8300000, guid: 9da95b32f2c544d428650ca0b6d063ed, type: 3}
+  - lazerShootClip: {fileID: 8300000, guid: 8a0ec7e1fcf797e47b2115acabeadb2d, type: 3}
+  - jumpClip: {fileID: 8300000, guid: 75292cde13a216c4296d34406cc96d58, type: 3}
+  - timeWarpClip: {fileID: 8300000, guid: 6fb4d5d09a5ff62489a87ea500e18d84, type: 3}
+  - backgroundMusicClip: {fileID: 8300000, guid: f417dc807921a054fbeb65587e8f3fc4,
+      type: 3}
+  - playerDeathClip: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
