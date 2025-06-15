@@ -59,44 +59,45 @@
     <UnityVersion>6000.0.42f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Users\sebib\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.2\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.42f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.42f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.42f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\TimeSightOverlay.cs" />
     <Compile Include="Assets\Scripts\FadeUI.cs" />
-    <Compile Include="Assets\BeamDot.cs" />
+    <Compile Include="Assets\Scripts\KeybindManager.cs" />
     <Compile Include="Assets\Scripts\LoadScript.cs" />
+    <Compile Include="Assets\Scripts\LabBg.cs" />
     <Compile Include="Assets\Scripts\StartCanvas.cs" />
-    <Compile Include="Assets\Fire.cs" />
-    <Compile Include="Assets\PersistentMusic.cs" />
+    <Compile Include="Assets\Scripts\Intro.cs" />
     <Compile Include="Assets\Scripts\HealthUI.cs" />
     <Compile Include="Assets\Scripts\BackgroundParallax.cs" />
+    <Compile Include="Assets\Scripts\Fire.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
+    <Compile Include="Assets\Scripts\PlayerControls.cs" />
     <Compile Include="Assets\Scripts\playerMovement.cs" />
-    <Compile Include="Assets\CutsceneTrigger.cs" />
+    <Compile Include="Assets\Scripts\Carry.cs" />
+    <Compile Include="Assets\Scripts\_SceneManager.cs" />
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
-    <Compile Include="Assets\TimeSightOverlay.cs" />
+    <Compile Include="Assets\Scripts\CutsceneTrigger.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
-    <Compile Include="Assets\Door.cs" />
+    <Compile Include="Assets\Scripts\PersistentMusic.cs" />
     <Compile Include="Assets\Scripts\EnergyBarUI.cs" />
-    <Compile Include="Assets\Carry.cs" />
     <Compile Include="Assets\Scripts\SaveData.cs" />
-    <Compile Include="Assets\KeybindManager.cs" />
+    <Compile Include="Assets\Scripts\BeamDot.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />
     <Compile Include="Assets\Scripts\SettingsScript.cs" />
-    <Compile Include="Assets\EnemyAttack.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Enemies.cs" />
+    <Compile Include="Assets\Scripts\EnemyAttack.cs" />
     <Compile Include="Assets\Scripts\SelfBox.cs" />
-    <Compile Include="Assets\Intro.cs" />
-    <Compile Include="Assets\_SceneManager.cs" />
+    <Compile Include="Assets\Scripts\Explosion.cs" />
     <Compile Include="Assets\Scripts\checkpoint.cs" />
     <Compile Include="Assets\Scripts\Boxes.cs" />
-    <Compile Include="Assets\PlayerControls.cs" />
-    <Compile Include="Assets\Explosion.cs" />
-    <Compile Include="Assets\LabBg.cs" />
+    <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\DeathPit.cs" />
   </ItemGroup>
   <ItemGroup>
