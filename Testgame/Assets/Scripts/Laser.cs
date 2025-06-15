@@ -7,9 +7,14 @@ public class Laser : MonoBehaviour
         Enemies enemy = other.GetComponent<Enemies>();
         if (enemy)
         {
-            enemy.Knockback((enemy.transform.position - transform.position).normalized, 3f);
-            enemy.TakeDamage(1);        
-            Destroy(gameObject);
+            Vector2 collisionPoint = other.ClosestPoint(transform.position);
+            Vector2 knockbackDirection = (enemy.transform.position - (Vector3)collisionPoint).normalized;
+            enemy.Knockback(knockbackDirection, 5f);
+            enemy.TakeDamage(1);
         }
+    }
+    void DestroyThis()
+    {
+        Destroy(gameObject);
     }
 }

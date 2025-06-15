@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\FadeUI.cs" />
+    <Compile Include="Assets\BeamDot.cs" />
     <Compile Include="Assets\Scripts\LoadScript.cs" />
     <Compile Include="Assets\Scripts\StartCanvas.cs" />
     <Compile Include="Assets\Fire.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\TimeSightOverlay.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\EnergyBarUI.cs" />
+    <Compile Include="Assets\Carry.cs" />
     <Compile Include="Assets\Scripts\SaveData.cs" />
     <Compile Include="Assets\KeybindManager.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />

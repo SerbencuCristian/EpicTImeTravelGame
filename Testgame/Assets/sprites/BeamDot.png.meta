@@ -1,52 +1,55 @@
 fileFormatVersion: 2
-guid: 324d4175df7e2f14793ac7e7656d5047
+guid: 70190fc5b53ff434d919f30e0c23558e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1075914435163556026
-    second: Interface windows_0
+      213: -3338032213927264879
+    second: BeamDot_0
   - first:
-      213: 6272799835004449078
-    second: Interface windows_1
+      213: -7139978975499425018
+    second: BeamDot_1
   - first:
-      213: 5442010213146667433
-    second: Interface windows_2
+      213: -189542175403285005
+    second: BeamDot_2
   - first:
-      213: 9078790117441612056
-    second: Interface windows_3
+      213: 8570340044912092518
+    second: BeamDot_3
   - first:
-      213: 9079613762718912693
-    second: Interface windows_4
+      213: 2145844815166847545
+    second: BeamDot_4
   - first:
-      213: -2162925168860653028
-    second: Interface windows_5
+      213: -8803817284806422803
+    second: BeamDot_5
   - first:
-      213: -1680523125302840098
-    second: Interface windows_6
+      213: -4370571772554321735
+    second: BeamDot_6
   - first:
-      213: 389435512943239862
-    second: Interface windows_7
+      213: -7776324158237709112
+    second: BeamDot_7
   - first:
-      213: -7204245417482000545
-    second: Interface windows_8
+      213: 3748511433698915551
+    second: BeamDot_8
   - first:
-      213: -5081789679511295578
-    second: Interface windows_9
+      213: -9110191452081300463
+    second: BeamDot_9
   - first:
-      213: 7851677635517676471
-    second: Interface windows_10
+      213: 1796042362781874675
+    second: BeamDot_10
   - first:
-      213: 4241660325199427701
-    second: Interface windows_11
+      213: -1188358083041502714
+    second: BeamDot_11
   - first:
-      213: -2828940007296014082
-    second: Interface windows_12
+      213: 4886919773805076000
+    second: BeamDot_12
   - first:
-      213: 3427559307316122834
-    second: Interface windows_13
+      213: -2094594315955971935
+    second: BeamDot_13
   - first:
-      213: -7503124653026697962
-    second: Interface windows_14
+      213: -8361675844377499402
+    second: BeamDot_14
+  - first:
+      213: 2675963118593194414
+    second: BeamDot_15
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -93,7 +96,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -155,13 +158,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Interface windows_0
+      name: BeamDot_0
       rect:
         serializedVersion: 2
-        x: 219
-        y: 822
-        width: 243
-        height: 299
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6477c5b85859111f0800000000000000
-      internalID: -1075914435163556026
+      spriteID: 19dfd08136deca1d0800000000000000
+      internalID: -3338032213927264879
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Interface windows_1
+      name: BeamDot_1
       rect:
         serializedVersion: 2
-        x: 498
-        y: 823
-        width: 241
-        height: 298
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 631b19817367d0750800000000000000
-      internalID: 6272799835004449078
+      spriteID: 60b699573f2b9ec90800000000000000
+      internalID: -7139978975499425018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Interface windows_2
+      name: BeamDot_2
       rect:
         serializedVersion: 2
-        x: 779
-        y: 823
-        width: 242
-        height: 298
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -214,20 +217,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9a9a7a2b477e58b40800000000000000
-      internalID: 5442010213146667433
+      spriteID: 3f5e12d456c9e5df0800000000000000
+      internalID: -189542175403285005
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Interface windows_3
+      name: BeamDot_3
       rect:
         serializedVersion: 2
-        x: 1062
-        y: 822
-        width: 237
-        height: 299
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,20 +239,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8192f64a2875efd70800000000000000
-      internalID: 9078790117441612056
+      spriteID: 6656a4dfcd6ffe670800000000000000
+      internalID: 8570340044912092518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Interface windows_4
+      name: BeamDot_4
       rect:
         serializedVersion: 2
-        x: 1342
-        y: 822
-        width: 237
-        height: 299
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,20 +261,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5b0db908c94410e70800000000000000
-      internalID: 9079613762718912693
+      spriteID: 93a322f7d7297cd10800000000000000
+      internalID: 2145844815166847545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Interface windows_5
+      name: BeamDot_5
       rect:
         serializedVersion: 2
-        x: 222
-        y: 502
-        width: 237
-        height: 300
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -280,20 +283,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c1a1f42c40fbbf1e0800000000000000
-      internalID: -2162925168860653028
+      spriteID: dee4ba7f2de82d580800000000000000
+      internalID: -8803817284806422803
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Interface windows_6
+      name: BeamDot_6
       rect:
         serializedVersion: 2
-        x: 502
-        y: 502
-        width: 317
-        height: 300
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -302,20 +305,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ed4be7f0f159da8e0800000000000000
-      internalID: -1680523125302840098
+      spriteID: 9b0ec8f012c9853c0800000000000000
+      internalID: -4370571772554321735
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Interface windows_7
+      name: BeamDot_7
       rect:
         serializedVersion: 2
-        x: 862
-        y: 518
-        width: 317
-        height: 284
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -324,20 +327,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6b267e3298d876500800000000000000
-      internalID: 389435512943239862
+      spriteID: 8cce3f9f062f41490800000000000000
+      internalID: -7776324158237709112
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Interface windows_8
+      name: BeamDot_8
       rect:
         serializedVersion: 2
-        x: 1222
-        y: 502
-        width: 357
-        height: 300
+        x: 512
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -346,20 +349,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f57ef3866f0650c90800000000000000
-      internalID: -7204245417482000545
+      spriteID: fd43d1ad943650430800000000000000
+      internalID: 3748511433698915551
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Interface windows_9
+      name: BeamDot_9
       rect:
         serializedVersion: 2
-        x: 222
-        y: 193
-        width: 201
-        height: 274
+        x: 576
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -368,20 +371,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6a9ab71063bd979b0800000000000000
-      internalID: -5081789679511295578
+      spriteID: 11cd4e66429129180800000000000000
+      internalID: -9110191452081300463
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Interface windows_10
+      name: BeamDot_10
       rect:
         serializedVersion: 2
-        x: 464
-        y: 293
-        width: 259
-        height: 174
+        x: 640
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -390,20 +393,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7bbf8e3a533c6fc60800000000000000
-      internalID: 7851677635517676471
+      spriteID: 3f9ba2b5303dce810800000000000000
+      internalID: 1796042362781874675
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Interface windows_11
+      name: BeamDot_11
       rect:
         serializedVersion: 2
-        x: 769
-        y: 166
-        width: 238
-        height: 300
+        x: 704
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -412,20 +415,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 578316da7976dda30800000000000000
-      internalID: 4241660325199427701
+      spriteID: 60ad852ae9a128fe0800000000000000
+      internalID: -1188358083041502714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Interface windows_12
+      name: BeamDot_12
       rect:
         serializedVersion: 2
-        x: 1042
-        y: 167
-        width: 259
-        height: 300
+        x: 768
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -434,20 +437,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ef8ea3e3d069db8d0800000000000000
-      internalID: -2828940007296014082
+      spriteID: 02edb7b64a3d1d340800000000000000
+      internalID: 4886919773805076000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Interface windows_13
+      name: BeamDot_13
       rect:
         serializedVersion: 2
-        x: 1338
-        y: 238
-        width: 243
-        height: 229
+        x: 832
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -456,20 +459,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2d4592fa703219f20800000000000000
-      internalID: 3427559307316122834
+      spriteID: 1a854e831918ee2e0800000000000000
+      internalID: -2094594315955971935
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Interface windows_14
+      name: BeamDot_14
       rect:
         serializedVersion: 2
-        x: 464
-        y: 59
-        width: 259
-        height: 223
+        x: 896
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -478,8 +481,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 61d1ede91eb8fd790800000000000000
-      internalID: -7503124653026697962
+      spriteID: 6f82ae02f1c55fb80800000000000000
+      internalID: -8361675844377499402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeamDot_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea93bcb474ee22520800000000000000
+      internalID: 2675963118593194414
       vertices: []
       indices: 
       edges: []
@@ -488,7 +513,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c9e4e4f12cbcded4cb380bec0baeadbf
     internalID: 0
     vertices: []
     indices: 
@@ -498,21 +523,22 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Interface windows_0: -1075914435163556026
-      Interface windows_1: 6272799835004449078
-      Interface windows_10: 7851677635517676471
-      Interface windows_11: 4241660325199427701
-      Interface windows_12: -2828940007296014082
-      Interface windows_13: 3427559307316122834
-      Interface windows_14: -7503124653026697962
-      Interface windows_2: 5442010213146667433
-      Interface windows_3: 9078790117441612056
-      Interface windows_4: 9079613762718912693
-      Interface windows_5: -2162925168860653028
-      Interface windows_6: -1680523125302840098
-      Interface windows_7: 389435512943239862
-      Interface windows_8: -7204245417482000545
-      Interface windows_9: -5081789679511295578
+      BeamDot_0: -3338032213927264879
+      BeamDot_1: -7139978975499425018
+      BeamDot_10: 1796042362781874675
+      BeamDot_11: -1188358083041502714
+      BeamDot_12: 4886919773805076000
+      BeamDot_13: -2094594315955971935
+      BeamDot_14: -8361675844377499402
+      BeamDot_15: 2675963118593194414
+      BeamDot_2: -189542175403285005
+      BeamDot_3: 8570340044912092518
+      BeamDot_4: 2145844815166847545
+      BeamDot_5: -8803817284806422803
+      BeamDot_6: -4370571772554321735
+      BeamDot_7: -7776324158237709112
+      BeamDot_8: 3748511433698915551
+      BeamDot_9: -9110191452081300463
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -77,6 +77,17 @@ public class playerMovement : MonoBehaviour
         controls.Player.Drop.performed += Drop;
         controls.Enable(); // Enable the controls
     }
+    void OnDisable()
+    {
+        horizontalMovement = 0f;
+        rb.linearVelocity = Vector2.zero;
+        controls.Player.Jump.performed -= Jump;
+        controls.Player.MoveLeft.performed -= MoveLeft;
+        controls.Player.MoveLeft.canceled -= MoveLeft;
+        controls.Player.MoveRight.performed -= MoveRight;
+        controls.Player.MoveRight.canceled -= MoveRight;
+        controls.Player.Drop.performed -= Drop;
+    }
     private void Gravity()
     {
         if (rb.linearVelocity.y < 0)

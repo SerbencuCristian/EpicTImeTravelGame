@@ -39,19 +39,24 @@ public class PauseMenu : MonoBehaviour
     public void MainMenuButton()
     {
         Time.timeScale=1;
+        controls.Player.Pause.performed -= PauseGame;
+        controls.Disable();
+        GameObject.Find("KeybindsManager").SetActive(false);
         SceneManager.LoadScene("StartMenu");
         GameObject.Find("SaveData").GetComponent<SaveData>().data.timeindicator = GameObject.Find("GameController").GetComponent<GameController>().timeindicator;
         GameObject.Find("SaveData").GetComponent<SaveData>().data.lastCheckpoint = GameObject.Find("GameController").GetComponent<GameController>().lastCheckpoint;
-        GameObject.Find("SaveData").GetComponent<SaveData>().SaveToJson();
+        GameObject.Find("SaveData").GetComponent<SaveData>().SaveToJson(GameObject.FindObjectOfType<Carry>().save);
     }
     public void ExitButton()
     {
         GameObject.Find("SaveData").GetComponent<SaveData>().data.timeindicator = GameObject.Find("GameController").GetComponent<GameController>().timeindicator;
         GameObject.Find("SaveData").GetComponent<SaveData>().data.lastCheckpoint = GameObject.Find("GameController").GetComponent<GameController>().lastCheckpoint;
-        GameObject.Find("SaveData").GetComponent<SaveData>().SaveToJson();
+        GameObject.Find("SaveData").GetComponent<SaveData>().SaveToJson(GameObject.FindObjectOfType<Carry>().save);
+        controls.Player.Pause.performed -= PauseGame;
+        controls.Disable();
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-        #endif //for editor
+#endif //for editor
         Application.Quit();//for build
     }
     void OnEnable()

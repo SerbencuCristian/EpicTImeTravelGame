@@ -216,6 +216,16 @@ public class LoadScript : MonoBehaviour
         controls.Player.TimeSight.canceled += TimeSight;
         controls.Enable();
     }
+    void OnDisable()
+    {
+        controls.Player.Past.performed -= Pressed1;
+        controls.Player.Present.performed -= Pressed2;
+        controls.Player.Future.performed -= Pressed3;
+        controls.Player.TimeTravel.started -= OnHold;
+        controls.Player.TimeTravel.canceled -= OnHold;
+        controls.Player.TimeSight.started -= TimeSight;
+        controls.Player.TimeSight.canceled -= TimeSight;
+    }
     private void ResetHold() //reset after holding down the button
     {
         Player.GetComponent<playerMovement>().enabled = true;

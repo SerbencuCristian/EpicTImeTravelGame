@@ -23,8 +23,10 @@ public class SettingsScript : MonoBehaviour
         }
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-        KeybindsImage.SetActive(false);
-        KeybindsImageGp.SetActive(false);
+        if(KeybindsImage !=null)
+            KeybindsImage.SetActive(false);
+        if(KeybindsImageGp != null)
+            KeybindsImageGp.SetActive(false);
     }
     public void FullscreenToggle(bool isFullscreen)
     {

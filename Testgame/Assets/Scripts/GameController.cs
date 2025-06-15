@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     private PlayerHealth playerHealth;
     public Vector2 lastCheckpoint;
     public GameObject SaveData;
+    public List<bool> triggeredScenes = new List<bool>(); //list of scenes that were triggered, used for saving and loading
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -30,6 +31,19 @@ public class GameController : MonoBehaviour
         grounds[3] = GameObject.FindWithTag("Platform Present");
         grounds[4] = GameObject.FindWithTag("Ground Future");
         grounds[5] = GameObject.FindWithTag("Platform Future");
+        SaveData = GameObject.Find("SaveData");
+        if (SaveData.GetComponent<SaveData>().data.TriggeredScenes != null)
+        {
+            triggeredScenes = SaveData.GetComponent<SaveData>().data.TriggeredScenes; //load triggered scenes from save data
+        }
+        if (triggeredScenes.Count == 0)
+        {
+            List<CutsceneTrigger> triggers = new List<CutsceneTrigger>(FindObjectsOfType<CutsceneTrigger>());
+            foreach (CutsceneTrigger trigger in triggers)
+            {
+                triggeredScenes.Add(false);
+            }
+        }
     }
     void Start()
     {
@@ -40,8 +54,7 @@ public class GameController : MonoBehaviour
         LoadCanvas.GetComponent<LoadScript>().OnHoldComplete += ChangeTime;
         player.GetComponent<PlayerHealth>().Death += ChangeTime;
         //basically set ground to present, we start in the present
-        SaveData = GameObject.Find("SaveData");
-        if(SaveData.GetComponent<SaveData>().data.timeindicator != 0)
+        if (SaveData.GetComponent<SaveData>().data.timeindicator != 0)
         {
             timeindicator = SaveData.GetComponent<SaveData>().data.timeindicator;
             LoadCanvas.GetComponent<LoadScript>().lastpress = SaveData.GetComponent<SaveData>().data.timeindicator;
@@ -49,14 +62,26 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            timeindicator=2;
+            timeindicator = 2;
         }
         ChangeTime();
-        if(SaveData.GetComponent<SaveData>().data.lastCheckpoint != new Vector2 (player.GetComponent<Rigidbody2D>().transform.position.x , player.GetComponent<Rigidbody2D>().transform.position.y) && SaveData.GetComponent<SaveData>().data.lastCheckpoint != Vector2.zero)
+        if (SaveData.GetComponent<SaveData>().data.lastCheckpoint != new Vector2(player.GetComponent<Rigidbody2D>().transform.position.x, player.GetComponent<Rigidbody2D>().transform.position.y) && SaveData.GetComponent<SaveData>().data.lastCheckpoint != Vector2.zero)
         {
             lastCheckpoint = SaveData.GetComponent<SaveData>().data.lastCheckpoint;
-            reseter=true;
+            reseter = true;
             ChangeTime();
+        }
+        List<CutsceneTrigger> triggers = new List<CutsceneTrigger>(FindObjectsOfType<CutsceneTrigger>());
+        foreach (CutsceneTrigger trigger in triggers)
+        {
+            if(triggeredScenes[trigger.CutsceneID] == true)
+            {
+                trigger.gameObject.SetActive(false); //disable cutscene triggers that were already triggered
+            }
+            else
+            {
+                trigger.gameObject.SetActive(true); //enable cutscene triggers that were not triggered
+            }
         }
         
     }

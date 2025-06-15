@@ -6,7 +6,8 @@ using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 public class PlayerShoot : MonoBehaviour
 {
-    public GameObject projectilePrefab;
+    public GameObject beamPrefab;
+    public GameObject beamDotPrefab;
     public GameObject player;
     public Animator animator;
     public float projectileSpeed = 0.5f;
@@ -15,7 +16,7 @@ public class PlayerShoot : MonoBehaviour
     private PlayerControls controls;
     void Awake()
     {
-        controls = KeybindManager.Instance.controls;  
+        controls = KeybindManager.Instance.controls;
         player = GameObject.Find("Player");
         animator = player.GetComponent<Animator>();
     }
@@ -24,41 +25,33 @@ public class PlayerShoot : MonoBehaviour
         controls.Player.Shoot.performed += OnShoot; // Subscribe to the Shoot action
         controls.Enable();
     }
-
+    void OnDisable()
+    {
+        controls.Player.Shoot.performed -= OnShoot; // Unsubscribe from the Shoot action
+    }
     public void OnShoot(InputAction.CallbackContext context)
     {
         if (context.performed && Time.timeScale == 1 && Time.time >= lastShootTime + shootCooldown) // Check cooldown
         {
             animator.SetTrigger("Shoot");
-            StartCoroutine(Shoot());
+            Shoot();
             lastShootTime = Time.time;
         }
     }
-    private IEnumerator Shoot()
+    public void Shoot()
     {
-        yield return new WaitForSeconds(0.25f);
-        GetComponent<PlayerHealth>().currentEnergy -= 1; // Decrease energy by 1 after shooting
-        // SHOTGUN BLAST
-        int numberOfProjectiles = 5;
-        float spreadAngle = 30f; // Total spread angle in degrees
-        bool isFacingRight = transform.localScale.x < 0; // Check the direction the player is facing
-        Vector3 baseDirection = isFacingRight ? Vector3.right : Vector3.left; // Default direction based on facing
+        GetComponent<PlayerHealth>().currentEnergy -= 1;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 playerPosition = player.transform.position;
+        Vector2 direction = (mousePosition - playerPosition).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        GameObject beamDot = Instantiate(beamDotPrefab, playerPosition, Quaternion.AngleAxis(angle, Vector3.forward));
+        shootCooldown = 0.75f;
+    }
+    public void ShootBeam(GameObject beamDot)
+    {
+        GameObject beam = Instantiate(beamPrefab, beamDot.transform.position, beamDot.transform.rotation);
+        beam.transform.localScale = new Vector3(0f, beam.transform.localScale.y, beam.transform.localScale.z);
 
-        for (int i = 0; i < numberOfProjectiles; i++)
-        {
-            float randomAngle = Random.Range(-spreadAngle / 2, spreadAngle / 2);
-            Vector3 shootDirection = Quaternion.Euler(0, 0, randomAngle) * baseDirection;
-
-            GameObject projectile = Instantiate(projectilePrefab, new Vector2(transform.position.x, transform.position.y + 0.1f), Quaternion.identity);
-            projectile.GetComponent<Rigidbody2D>().linearVelocity = shootDirection * projectileSpeed * 3;
-
-            float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
-            projectile.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-            Destroy(projectile, 0.15f);
-        }
-        // Apply knockback to the player in the opposite direction of the shot
-        Vector2 knockbackDirection = -baseDirection.normalized; // Opposite of the shooting direction
-        player.GetComponent<playerMovement>().Knockback(knockbackDirection, 5f); // Call the knockback function
     }
 }
