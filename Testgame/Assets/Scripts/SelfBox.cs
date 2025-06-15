@@ -46,7 +46,6 @@ public class SelfBox : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D other) //checker for ground collision, and move left or right to find a suitable spot
     {
-        rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         if ((other.CompareTag("Ground Present") || other.CompareTag("Platform Present") || other.CompareTag("Ground Past")|| other.CompareTag("Platform Past")|| other.CompareTag("Ground Future")|| other.CompareTag("Platform Future") ) && isChecking == false)
         {
             GetComponent<SpriteRenderer>().enabled = false;
@@ -83,6 +82,5 @@ public class SelfBox : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = true;
             isChecking = false;
         }
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
