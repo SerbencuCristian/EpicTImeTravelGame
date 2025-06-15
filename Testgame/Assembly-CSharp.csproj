@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
     <Compile Include="Assets\TimeSightOverlay.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
+    <Compile Include="Assets\Door.cs" />
     <Compile Include="Assets\Scripts\EnergyBarUI.cs" />
     <Compile Include="Assets\Carry.cs" />
     <Compile Include="Assets\Scripts\SaveData.cs" />

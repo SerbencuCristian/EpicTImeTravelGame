@@ -41,7 +41,6 @@ public class LoadScript : MonoBehaviour
     GameObject slider;
     public bool HoldingTS = false;
     private PlayerControls controls;
-
     void Awake()
     {
         controls = KeybindManager.Instance.controls; // Use the shared instance
@@ -64,7 +63,14 @@ public class LoadScript : MonoBehaviour
         Player = GameObject.Find("Player");
         Holder = GameObject.Find("Holder");
         disabledCheck = GameObject.Find("DisabledCheck").transform;
-
+        if(GameObject.Find("SaveData").GetComponent<SaveData>().data.TriggeredScenes[2] == true)
+        {
+            TimeTravelEnabled = true;
+        }
+        else
+        {
+            TimeTravelEnabled = false;
+        }
         grounds[0] = GameObject.FindWithTag("Ground Past");
         grounds[1] = GameObject.FindWithTag("Platform Past");
         grounds[2] = GameObject.FindWithTag("Ground Present");

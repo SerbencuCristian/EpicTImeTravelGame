@@ -45,6 +45,15 @@ public class CutsceneTrigger : MonoBehaviour
                 timeline.Play();
                 GameController.GetComponent<GameController>().triggeredScenes[CutsceneID] = true;
             }
+            else if (CutsceneID == 2)
+            {
+                DialogueText.text = "";
+                StartCoroutine(Dialogue("MAYBE I CAN SCRAP SOMETHING FROM THIS MACHINE", 0.01f));
+                timeline.Play();
+                GameObject.Find("LoadCanvas").GetComponent<LoadScript>().TimeTravelEnabled = true;
+                GameObject.Find("Door").GetComponent<Animator>().SetTrigger("Open");
+                GameController.GetComponent<GameController>().triggeredScenes[CutsceneID] = true;
+            }
         }
     }
     private IEnumerator Dialogue(string text, float delay)
