@@ -83,3 +83,7 @@ Jocul suportă input de la tastatură sau controller.
 Am folosit ChatGPT și GitHub Copilot, unde am pus întrebări (ex. "How should i go about adding this?") care ne-au ajutat să aflăm despre metodele corecte de a implementa anumite aspecte (cum ar fi manager-ul de sunet) și să remediem bug-urile. De asemenea, funcția de inline autocomplete a accelerat producția, în special prin apelarea corectă a funcțiilor corespunzătoare contextului. <br>
 
 Pe de altă parte, deși AI-ul este folositor, nu le poate face pe toate: la începutul proiectului, am încercat să facem sprite-uri cu ajutorul său, dar a trebuit să abandonăm ideea - și le-am făcut de mână.
+
+## GITHUB TEAM PROJECT
+
+https://github.com/users/SerbencuCristian/projects/1
